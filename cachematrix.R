@@ -1,5 +1,14 @@
-## Put comments here that give an overall description of what your
-## functions do
+
+## This is a set of functions to solve the inverse of a matrix.
+## Since matrix inversion can be expensive, the inverse is cached.
+## When you invoke the cacheSolve function, it checks the cache first.
+## The cache is designed to reset itself if the matrix value changes.
+##
+## Here is an example of how to invoke these functions:
+##  myMatrix <- (your matrix parms here)
+##  a<-makeCacheMatrix()
+##  a$set(myMatrix)
+##  cacheSolve(a)
 
 ##  This function creates a special "matrix" object that can cache its inverse.
 
@@ -31,9 +40,9 @@ cacheSolve <- function(x, ...) {
     message("getting cached data")
     return(S)           #return what we got from the cache
   }
-  #code form here down is only executed if the cached value was null
+  #code from here down is only executed if the cached value was null
   data <- x$get()       #get the value for x so we can use it
-  S <- Solve(data, ...) #convert the inverse
+  S <- solve(data, ...) #convert the inverse
   x$setSolve(S)         #save the inverse in the cache
   S                     #return the value we created, and cached
 }
